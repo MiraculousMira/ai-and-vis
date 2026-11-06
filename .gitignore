@@ -1,3 +1,4 @@
-data/
+data/test/
+data/train/
 team-ai/*.pth
 team-ai/*.csv
