@@ -53,8 +53,8 @@ The goal of this phase is to analyze how a **ResNet-50** model behaves when clas
 * *Out-of-Distribution (OOD) Dataset Noise:* For reasons unknown, the muffin test set contains stray images of plants (e.g., cannabis buds). Interestingly, the model produced its highest-confidence errors on these anomalies (80%–86%), likely mistaking dense textures or pistils for dog fur.
 
 ### 3. Emerging Best Practices for AI in Model Analysis
-* **Rule 1:** Use AI for bulk data enrichment (tagging), but spot-check samples manually to avoid propagating AI errors into the evaluation.
-* **Rule 2:** Keep prompts modular—ask AI for script templates for visualization rather than complete end-to-end execution.
+* **Rule 1:** Refactoring code together with AI makes it a lot easier and faster. Most of the time models produce code that is nearly there, but needs some polishing.
+* **Rule 2:** ...
 
 ---
 
