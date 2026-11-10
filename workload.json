@@ -9,7 +9,7 @@
         {
             "first_name": "Felix",
             "last_name": "Aschenbrenner",
-            "workload": TODO
+            "workload": 6.5
         },
         {
             "first_name": "Dominik",
@@ -18,7 +18,7 @@
         },
         {
             "first_name": "Michael",
-            "last_name": "TODO",
+            "last_name": "Schöpf",
             "workload": TODO
         }
     ]
