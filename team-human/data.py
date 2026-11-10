@@ -15,6 +15,9 @@ tf = transforms.Compose(
     ]
 )
 
+def transform(img):
+    return tf(img)
+
 def denormalize(img: np.ndarray) -> np.ndarray:
     # img: [h, w, c]
     mean = np.array(norm_means)[None, None, :]
