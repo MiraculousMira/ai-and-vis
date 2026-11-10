@@ -3,7 +3,7 @@
 **Team Name:** semi motivated team  
 **AI Users:** 
 * k51850345, Gerald Mitterecker
-* TODO, Thomas TODO
+* 12213736, Thomas Karasin
 
 ---
 
