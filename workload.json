@@ -1,0 +1,25 @@
+{
+    "team_name": "Team Name",
+    "students": [
+        {
+            "first_name": "Gerald",
+            "last_name": "Mitterecker",
+            "workload": 4.25
+        },
+        {
+            "first_name": "Felix",
+            "last_name": "Aschenbrenner",
+            "workload": TODO
+        },
+        {
+            "first_name": "Dominik",
+            "last_name": "TODO",
+            "workload": TODO
+        },
+        {
+            "first_name": "Michael",
+            "last_name": "TODO",
+            "workload": TODO
+        }
+    ]
+} 

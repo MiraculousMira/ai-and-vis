@@ -19,14 +19,15 @@ The goal of this phase is to analyze how a **ResNet-50** model behaves when clas
   * Compute confidence/softmax scores.
   * Isolate correct predictions, misclassifications, and high-confidence errors (e.g., predicted Muffin with 95% confidence on a Chihuahua).
 
-### Step 2: Practical AI-Assisted Image Tagging
-* **Goal:** Avoid manually labeling hundreds of images while still gaining rich insights into model behavior.
-* **Key Tasks:**
-  * Use a Vision-Language Model (VLM) / AI assistant to generate structured metadata tags for the dataset.
-  * **Tags to extract:**
-    * *Background/Context:* Plain, kitchen background, outdoor, cluttered.
-    * *Key Visual Features:* Wrapper/cupcake liner present, close-up vs. full body/plate, dark vs. bright lighting.
-    * *Texture/Anatomy Cues:* Visible eyes/nose, dark spots (blueberries vs. eyes), wrinkled texture.
+### Step 2: Automated Feature Enrichment & Latent Space Analysis
+- **Goal:** Extract rich, quantitative insights into model behavior and failure modes.
+- **Key Tasks:**
+  - **Deep Feature Extraction:** Pass the test dataset through ResNet-50’s penultimate layer to extract 2,048-dimensional latent feature vectors.
+  - **Dimensionality Reduction (UMAP):** Project high-dimensional features into a 2D manifold to visualize structural class separation, cluster groupings, and the ambiguous "bridge" region where model confidence drops.
+  - **Automated Heuristics & Image Statistics:** Extract zero-cost metadata via Python (`Pillow`/NumPy) to surface hidden biases without human intervention:
+    - *Color Channel Intensity (RGB):* Analyze color distributions to isolate environmental outliers.
+    - *Resolution & Size Breakdown:* Compare image dimensions against the dataset mean to measure how low-resolution inputs impact error rates.
+    - *Brightness Quartiles:* Assess lighting distribution across dark, medium, and bright quartiles to identify illumination-based failure modes.
 
 ### Step 3: Interactive Visual Analytics Dashboard
 * **Goal:** Move beyond aggregate accuracy metrics by building an interactive visual analytics framework to evaluate model error clusters.
@@ -77,12 +78,12 @@ The goal of this phase is to analyze how a **ResNet-50** model behaves when clas
 To set up the environment and run the analysis pipeline, follow these steps:
 
 ```bash
-# 1. Clone the repository
-git clone [https://github.com/MiraculousMira/ai-and-vis.git](https://github.com/MiraculousMira/ai-and-vis.git)
-cd ai-and-vis
+# 1. Download dataset
+python download_dataset.py
+cd team-ai
 
 # 2. Install dependencies
-pip install torch torchvision numpy pandas matplotlib seaborn pillow scikit-learn tqdm umap-learn plotly dash jupyter
+pip install torch torchvision numpy pandas matplotlib seaborn pillow scikit-learn tqdm umap-learn plotly dash jupyter kagglehub
 
 # 3. Run Step 1: Baseline Inference
 python step1_baseline_inference.py
