@@ -19,25 +19,29 @@ label_descr = ["chihuahua", "muffin"]
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
 
+def rearrange(img):
+    if img.ndim == 4:
+        return torch.func.rearrange(img, "b h w c -> b c h w")
+
+    return torch.func.rearrange(img, "h w c -> c h w")
+
 def predict_fn(imgs):
     img_tensor = torch.tensor(imgs).to(device)
 
-    if img_tensor.ndim == 4:
-        rearranged = torch.func.rearrange(img_tensor, "b h w c -> b c h w")
-    else:
-        rearranged = torch.func.rearrange(img_tensor, "h w c -> c h w")
-    return model(rearranged).numpy(force=True)
+    return model(rearrange(img_tensor)).numpy(force=True)
 
 
 def explain_sample(img, label):    
     explanation = explainer.explain_instance(img, predict_fn, label_descr, top_labels=2)
+
+    pred_label = model(rearrange(torch.tensor(img, device=device).unsqueeze(0))).max(dim=1)[1]
 
     fig, (left_ax, right_ax) = plt.subplots(1, 2, figsize=(8, 4))
     temp, mask = explanation.get_image_and_mask(
         label, positive_only=False, num_features=5, hide_rest=True, min_weight=0.2
     )
 
-    fig.suptitle(f"Label: {label_descr[label]}")
+    fig.suptitle(f"Label: {label_descr[label]}\nPrediction: {label_descr[pred_label]}")
 
     left_ax.imshow(denormalize(img))
     left_ax.set_xticks([])
@@ -50,7 +54,7 @@ def explain_sample(img, label):
     return fig
 
 def load_img(path):
-    img = Image.open(args.image)
+    img = Image.open(args.image).convert("RGB")
     img_tensor = transform(img) #do the transformation before preprocessing -> speedup because smaller image
     rearranged = torch.func.rearrange(img_tensor, "c h w -> h w c")
     
