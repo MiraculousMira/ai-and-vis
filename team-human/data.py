@@ -27,8 +27,8 @@ def denormalize(img: np.ndarray) -> np.ndarray:
 
 def get_train_loader(batch_size: int) -> DataLoader:
     train_data = datasets.ImageFolder("../data/train", tf)
-    return DataLoader(train_data, batch_size=32, shuffle=True)
+    return DataLoader(train_data, batch_size=batch_size, shuffle=True)
 
 def get_test_loader(batch_size: int) -> DataLoader:
     test_data = datasets.ImageFolder("../data/test", tf)
-    return DataLoader(test_data, batch_size=32)
+    return DataLoader(test_data, batch_size=batch_size)
