@@ -4,3 +4,7 @@ team-ai/*.pth
 team-ai/*.csv
 .venv/
 team-human/out
+team-human/*.png
+team-human/*.csv
+team-human/*.pt
+team-human/__pycache__/
