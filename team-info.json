@@ -2,14 +2,14 @@
     "team_name": "semi motivated group",
     "students": [
         {
-            "student_id": "11905022",
+            "student_id": "k11905022",
             "first_name": "Felix",
             "last_name": "Aschenbrenner",
             "email": "felix.aschenbrenner@liwest.at",
             "github_user": "javazorb"
         },
         {
-            "student_id": "12213283",
+            "student_id": "k12213283",
             "first_name": "Michael",
             "last_name": "Schöpf",
             "email": "k12213283@students.jku.at",
